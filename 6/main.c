@@ -6,22 +6,25 @@
 
 int main()
 {
-	const unsigned long long n = 100;
-	unsigned long long sum = 0;
-	unsigned long long sqare_of_sum = 0;
-	unsigned long long sum_of_sqares = 0;
+	const long long n = 100;
+	long long sum = 0;
+	long long sqare_of_sum = 0;
+	long long sum_of_sqares = 0;
 
-	for (unsigned long long i = 1; i <= n; sum += i++)
-		;
+	for (long long i = 1; i <= n; i++)
+		sum += i;
 	sqare_of_sum = sum * sum;
 
-	for (unsigned long long i = 1; i <= n; ++i)
+	for (long long i = 1; i <= n; i++)
 		sum_of_sqares += i * i;
 
+	long long result = sum_of_sqares-sqare_of_sum;
+	result = (result < 0) ? result * -1 : result;
 
-	printf("The difference between the sum of the squares of the\n\
-first one hundred natural numbers and\n\
-the square of the sum is: %llu\n",sum_of_sqares-sqare_of_sum);
+	printf("The difference between the sum of the squares: %lld\n\
+of the first one hundred natural numbers and\n\
+the square of the sum: %lld is: %lld\n",sum_of_sqares,
+sqare_of_sum, result);
 	
 	return 0;
 }

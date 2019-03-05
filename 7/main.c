@@ -1,6 +1,6 @@
 /* What is the 10 001st prime number?*/
 
-#define PRIMEINDEX 100010
+#define PRIMEINDEX 10001
 
 #include <stdio.h>
 #include <stdlib.h>
