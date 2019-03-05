@@ -12,7 +12,8 @@ void print(unsigned long * primes, unsigned long numtoprint) {
 			printf("%zd ",i);
 }
 
-int main(){
+int main()
+{
 	unsigned long long sum = 0; 
 	unsigned long * primes;
 
