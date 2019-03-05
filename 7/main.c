@@ -6,13 +6,15 @@
 #include <stdlib.h>
 #include <math.h>
 
-void print(unsigned int * primes, unsigned int numtoprint) {
+void print(unsigned int * primes, unsigned int numtoprint) 
+{
 	for(unsigned int i = 0; i < numtoprint; ++i)
 		if(primes[i])
 			printf("%zd ",i);
 }
 
-int main(){
+int main()
+{
 	unsigned int * primes;
 	unsigned int size = 100;
 	unsigned int result = 0;

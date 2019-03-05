@@ -4,7 +4,8 @@
 
 #include <stdio.h>
 
-int main(){
+int main()
+{
 	long unsigned previous = 1;  
 	long unsigned current = 1;
     long unsigned sum = 0;	

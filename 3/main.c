@@ -5,13 +5,15 @@
 #include <stdlib.h>
 #include <math.h>
 
-void print(unsigned long * primes, unsigned long numtoprint) {
+void print(unsigned long * primes, unsigned long numtoprint)
+{
 	for(unsigned long i = 0; i < numtoprint; ++i)
 		if(primes[i])
 			printf("%zd ",i);
 }
 
-int main(){
+int main()
+{
 	unsigned long largest_pfactor_index = 2; 
 	unsigned long number = NUMBER;
 	unsigned long * primes;

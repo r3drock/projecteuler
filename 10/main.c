@@ -6,7 +6,8 @@
 
 #define MAGIC 2000000
 
-void print(unsigned long * primes, unsigned long numtoprint) {
+void print(unsigned long * primes, unsigned long numtoprint) 
+{
 	for(unsigned long i = 0; i < numtoprint; ++i)
 		if(primes[i])
 			printf("%zd ",i);
