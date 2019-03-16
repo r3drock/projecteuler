@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <gmp.h>
-#include <limits.h>
 
 int main()
 {
