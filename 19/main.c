@@ -35,7 +35,11 @@ struct date iterateyear(struct date currentdate)
 {
 	int daysinmonth = getnumdaysinmonthandyear(currentdate.month, currentdate.year);
 	for(; currentdate.month <= december; ++currentdate.month) {
+		daysinmonth = getnumdaysinmonthandyear(currentdate.month, currentdate.year);
+		currentdate.day = 1;
 		for (int i = 0; i < daysinmonth; ++i) {
+			printf("%u.%u.%u %u\n", currentdate.day, currentdate.month,
+					currentdate.year, currentdate.weekday);
 			if (currentdate.weekday == sunday) {
 				++numbersundays;
 				currentdate.weekday = monday;
@@ -57,10 +61,19 @@ int main()
 	currentdate.weekday = 1;
 
 	currentdate = iterateyear(currentdate);
-	for (;currentdate.year <= 2000;
-	 	 ++currentdate.year, currentdate.month = 1, currentdate.day = 1) {
+	++currentdate.year;
+	currentdate.month = 1;
+	currentdate.day = 1;
+
+	for (;currentdate.year <= 1902;
+		 ++currentdate.year, currentdate.month = 1, currentdate.day = 1) {
+		/*if (currentdate.weekday == 7)*/
+			/*currentdate.weekday = 1;*/
+		/*else*/
+			/*++currentdate.weekday;*/
 		iterateyear(currentdate);
 	}
+	
 	printf("There are %d sundays during the twentieth century.", numbersundays);
 	return 0;
 }
