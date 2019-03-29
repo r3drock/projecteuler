@@ -1,7 +1,7 @@
 dist: xenial
 language: c
 compiler:
-  - clang -std=c99
+  - clang
   - c99  
 script:
   # Check versions of gcc and cmake
