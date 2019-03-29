@@ -1,15 +1,12 @@
 dist: xenial
 language: c
 compiler:
-  - clang
-  - c99  
+  - clang  
 script:
   # Check versions of gcc and cmake
-  - c99 --version && clang --version && cmake --version
-  # find math.h
-  - find /usr -iname "math.h"
+  - clang --version && cmake --version
   # build programs using cmake
   - mkdir build
   - cd build
   - cmake ..
-  - make VERBOSE=1
+  - make
