@@ -1,11 +1,11 @@
 dist: xenial
 language: c
-script:
 compiler:
   - clang -std=c99
   - c99  
+script:
   # Check versions of gcc and cmake
-  - c99 -v && cmake --version
+  - c99 -v && clang --v && cmake --version
   # find math.h
   - find /usr -iname "math.h"
   # build programs using cmake
