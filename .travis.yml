@@ -1,7 +1,9 @@
 dist: xenial
 language: c
 script:
-  - export CC=c99
+compiler:
+  - clang -std=c99
+  - c99  
   # Check versions of gcc and cmake
   - c99 -v && cmake --version
   # find math.h
