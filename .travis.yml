@@ -7,7 +7,7 @@ language: c
 #    packages:
 #      - gcc-7
 script:
-  - export CC=gcc
+  - export CC=c99
   # Check versions of gcc and cmake
   - gcc -v && cmake --version
   - mkdir build
