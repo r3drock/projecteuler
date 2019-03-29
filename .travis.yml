@@ -1,1 +1,16 @@
+dist: trusty
 language: c
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-7
+script:
+  - export CC=gcc-7
+  # Check versions of gcc and cmake
+  - gcc -v && cmake --version
+  mkdir build
+  cd build
+  cmake ..
+  make
