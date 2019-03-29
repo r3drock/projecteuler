@@ -3,7 +3,9 @@ language: c
 script:
   - export CC=c99
   # Check versions of gcc and cmake
-  - gcc -v && cmake --version
+  - c99 -v && cmake --version
+  # find math.h
+  - find /usr -iname "math.h"
   # build programs using cmake
   - mkdir build
   - cd build
