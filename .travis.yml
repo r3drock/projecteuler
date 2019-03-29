@@ -9,8 +9,8 @@ addons:
 script:
   - export CC=gcc-7
   # Check versions of gcc and cmake
-  - gcc -v && cmake --version
+  - gcc-7 -v && cmake --version
   - mkdir build
   - cd build
   - cmake ..
-  - make
+  - make VERBOSE=1
