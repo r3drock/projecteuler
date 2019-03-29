@@ -1,15 +1,10 @@
 dist: trusty
 language: c
-#addons:
-#  apt:
-#    sources:
-#      - ubuntu-toolchain-r-test
-#    packages:
-#      - gcc-7
 script:
   - export CC=c99
   # Check versions of gcc and cmake
   - gcc -v && cmake --version
+  # build programs using cmake
   - mkdir build
   - cd build
   - cmake ..
