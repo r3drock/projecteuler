@@ -10,6 +10,26 @@ struct list {
 	int divisor;
 };
 
+void freelist(struct list *divisors[SIZE]);
+int generate_divisors(struct list *divisors[SIZE]);
+int d(struct list *divisors[SIZE], int n);
+int get_anum_sum(struct list *divisors[SIZE]);
+
+int main()
+{
+	struct list *divisors[SIZE];
+	if (generate_divisors(divisors)) {
+		fprintf(stderr, "not enough memory!");
+		return -1;
+	}
+
+	printf("The sum of all the amicable numbers under 10000 is:%d\n",
+	get_anum_sum(divisors));
+
+	freelist(divisors);
+	return 0;
+}
+
 int generate_divisors(struct list *divisors[SIZE])
 {
 	for (int i = 0; i < SIZE; ++i) {
@@ -68,19 +88,4 @@ int get_anum_sum(struct list *divisors[SIZE])
 				sum += a + b;
 			}
 	return sum;
-}
-
-int main()
-{
-	struct list *divisors[SIZE];
-	if (generate_divisors(divisors)) {
-		printf("not enough memory!");
-		return -1;
-	}
-
-	printf("The sum of all the amicable numbers under 10000 is:%d\n",
-		get_anum_sum(divisors));
-
-	freelist(divisors);
-	return 0;
 }
