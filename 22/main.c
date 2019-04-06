@@ -4,16 +4,9 @@
 
 #define FILENAME "names.txt"
 
-int cnif();
 int cnss(char **names, int size);
-
-int strcomp(const void * a, const void * b)
-{
-	const char **ap = (const char **) a;
-	const char **bp = (const char **) b;
-
-	return strcmp(*ap, *bp);
-}
+int cnif();
+int strcomp(const void * a, const void * b);
 
 int main()
 {
@@ -91,3 +84,10 @@ int cnif() // count names in file
 	return len / 2;
 }
 
+int strcomp(const void * a, const void * b)
+{
+	const char **ap = (const char **) a;
+	const char **bp = (const char **) b;
+
+	return strcmp(*ap, *bp);
+}
