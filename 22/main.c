@@ -5,8 +5,15 @@
 #define FILENAME "names.txt"
 
 int cnif();
-void qsort(char **names);
-int calculatenamescores();
+int cnss(char **names, int size);
+
+int strcomp(const void * a, const void * b)
+{
+	const char **ap = (const char **) a;
+	const char **bp = (const char **) b;
+
+	return strcmp(*ap, *bp);
+}
 
 int main()
 {
@@ -44,23 +51,27 @@ int main()
 			insidequotationmarks = 1;
 	}
 
-	qsort(names);
+	qsort(names, namecount, sizeof(char *),
+		  strcomp);
 	for (int i = 0; i < namecount; ++i)
 		printf("%s\n",names[i]);
-	calculatenamescoresum(names, namecount);
+	
+	printf("namescoresum: %d\n", cnss(names, namecount));
 	return 0;
 }
 
-int calculatenamescoresum(char **names, int size)
+int cnss(char **names, int size) //calculatenamescoresum
 {
 	int sum = 0;
-	char c = 0;
 
-	for (int i = 0; i < size; ++i) 
+	for (int i = 0; i < size; ++i) {
+		int subsum = 0;
 		for (int j = 0; names[i][j] != '\0'; ++j) 
-			sum += (names[i][j] + 1) - 'A';
+			subsum += (names[i][j] + 1) - 'A';
+		sum += subsum * (i+1);
+	}
 
-	return 0;
+	return sum;
 }
 
 int cnif() // count names in file
@@ -80,6 +91,3 @@ int cnif() // count names in file
 	return len / 2;
 }
 
-void qsort(char **names)
-{
-}
