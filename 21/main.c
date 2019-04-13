@@ -1,9 +1,9 @@
 /* Evaluate the sum of all the amicable numbers under 10000.*/
 
+#define SIZE 10000
+
 #include <stdio.h>
 #include <stdlib.h>
-
-#define SIZE 10000
 
 struct list {
 	struct list *next;
@@ -69,6 +69,8 @@ void freelist(struct list *divisors[SIZE])
 	}
 }
 
+/* d(n) is the sum of proper divisors of n
+ * (numbers less than n which divide evenly into n).*/
 int d(struct list *divisors[SIZE], int n)
 {
 	int sum = 0;
