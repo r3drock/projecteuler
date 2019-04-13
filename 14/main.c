@@ -10,7 +10,7 @@
 int collatz(unsigned long long n, unsigned int iterations)
 {
 	if (iterations == UINT_MAX) {
-		fprintf(stderr,"More than UINT_MAX iterations.");
+		fprintf(stderr,"Too many iterations.");
 		exit(-1);
 	}
 	if (n == 1)
