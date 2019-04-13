@@ -15,6 +15,7 @@ unsigned long long routescount(int x, int y, int xmax, int ymax)
 		return routescount(x + 1, y, xmax, ymax) + 
 			routescount(x, y + 1, xmax, ymax);
 }
+
 int main()
 {
 	for (int i = 2; i <= MAX; ++i)

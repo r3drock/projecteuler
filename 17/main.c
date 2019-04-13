@@ -71,6 +71,7 @@ int spellletter(int num)
 	printf("\t%d\n",sum);
 	return sum;
 }
+
 /* Get lettercount in a number */
 int get_letter_count(int num)
 {

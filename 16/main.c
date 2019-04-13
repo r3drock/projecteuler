@@ -6,6 +6,8 @@
 int main()
 {
 	unsigned long sum = 0;
+
+	//potentially very big numbers
 	mpz_t val;
 	mpz_t temp;
 
