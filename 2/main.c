@@ -6,9 +6,9 @@
 
 int main()
 {
-	long unsigned previous = 1;  
-	long unsigned current = 1;
-    long unsigned sum = 0;	
+	unsigned long previous = 1;  
+	unsigned long current = 1;
+    unsigned long sum = 0;	
 
 	while (current <= LIMIT) {
 		unsigned long temp = current; 

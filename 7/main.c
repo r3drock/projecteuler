@@ -10,16 +10,13 @@ void print(unsigned int * primes, unsigned int numtoprint)
 {
 	for(unsigned int i = 0; i < numtoprint; ++i)
 		if(primes[i])
-			printf("%zd ",i);
+			printf("%u ",i);
 }
 
-int main()
+unsigned int run(unsigned int size) 
 {
-	unsigned int * primes;
-	unsigned int size = 100;
-	unsigned int result = 0;
-
-a:	primes = (unsigned int *) calloc(size,sizeof(unsigned int));
+	unsigned int result;
+	unsigned int * primes = (unsigned int *) calloc(size,sizeof(unsigned int));
 
 	/* 0 stands for: Not a prime number.
 	 * 1 stands for: Is a prime number. */
@@ -42,14 +39,19 @@ a:	primes = (unsigned int *) calloc(size,sizeof(unsigned int));
 				result = i;
 
 	free(primes);
-	if (result)
-		printf("The %dst prime number is: %d\n",
-			   PRIMEINDEX, result);
-	else {
+	return result;
+}
+int main()
+{
+	unsigned int size = 100;
+	unsigned int result = 0;
+
+	while (!(result = run(size))) {
 		printf("size not large enough. trying again...\n");
 		size *= 2;
-		goto a;	/*shame on me :-p*/
 	}
-	
+	printf("The %dst prime number is: %d\n",
+		   PRIMEINDEX, result);
+
 	return 0;
 }
