@@ -2,90 +2,107 @@
  *  * identity can be written as a 1 through 9 pandigital.*/
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define BASE 10
 
-void generateProducts(int n, int i, int* products)
-int isPandigital(int n, int* products);
-int power(int i, int j);
-int largest();
-int concat(int n, const int* products);
+void generateProducts(long n, long i, long* products);
+long power(long i, long j);
+long largest();
+long concat(long n, const long* products);
+long numdigits(long number);
+long isPandigital(long n);
 
 int main()
 {
-
+	printf("%ld\n", largest());
 	return 0;
 }
 
-int largest(){
-	int n = 5;
-	int i = 9;
-	int number = 0;
-	int largest = 0;
+long largest(){
+	long n = 5;
+	long i = 9;
+	long number = 0;
+	long largest = 0;
+	long products[6];
 
-	int products[6];
-
-	while (number < 1000000000) {
+	while (number < 1000000000 && n > 1) {
 		generateProducts(n, i, products);
 		number = concat(n, products);
-		if (isPandigital(
+		if ( number < 0) {
+			fprintf(stderr, "FEHLER%ld\n", number);
+			exit(1);
+		}
+		if (number >= 1000000000) {
+			--n; 
+			number = 0;
+			continue;
+		}
 
-		
-
-
-
-
-
+		printf("%ld\n", number);
+		if (numdigits(number) == 9) {
+			if (isPandigital(number)) {
+				printf("YES\n");
+				if (number > largest) {
+					largest = number;
+				}
+			}
+		}
+		++i;
 	}
-
-
+	return largest;
 }
 
-void generateProducts(int n, int i, int* products)
+void generateProducts(long n, long i, long* products)
 {
-	for (int j = 0; j < n; ++j)
+	for (long j = 0; j < n; ++j)
 	products[j] = i * (j+1);
 }
 
-int numdigits(int number)
+long numdigits(long number)
 {
-	int digitscount = 0;
+	long digitscount = 0;
 	for (;number > 0; number /= 10)
 		digitscount++;
 	return digitscount;
 }
 
-int concat(int n, const int* products)
+long concat(long n, const long* products)
 {
-	int concatenated = 0;
-	for (int j = 0 ; j < n; ++j) {
-		concatenated += products[j];
+	printf("n: %ld [%ld, %ld, %ld, %ld, %ld]\n", n, products[0], products[1], products[2],
+			products[3], products[4]);
+	long concatenated = products[0];
+	for (long j = 1 ; j < n; ++j) {
+		printf("products[%ld]: %ld concatenated: %ld\n", j, products[j], concatenated);
 		concatenated *= power(10, numdigits(products[j]));
+		printf("concatenated: %ld\n", concatenated);
+		concatenated += products[j];
+		printf("concatenated: %ld\n", concatenated);
 	}
 	return concatenated;
 }
 
-int power(int i, int j)
+long power(long i, long j)
 {
-	int retval = 1;
+	long retval = 1;
 	for (; j > 0; --j) 
 		retval *= i;
 	return retval;
 }
 
-int isPandigital(int n, int* products)
+long isPandigital(long n)
 {
 	char hasit[BASE] = {0,0,0,0,0,0,0,0,0,0}; 
 
-	for (int j = 0; j < n; ++j) {
-		while (products[n] > 0) {
-			hasit[products[j] % BASE] += 1;
-			products[j] /= BASE;
+	for (long j = 0; j < 9; ++j) {
+		while (n > 0) {
+			hasit[n % BASE] += 1;
+			n /= BASE;
 		}
 	}
 	if (hasit[0])
 		return 0;
-	for(int i = 1; i < BASE; ++i)
+	for(long i = 1; i < BASE; ++i)
 		if (hasit[i] != 1)
 			return 0;
 	return 1;
