@@ -39,10 +39,8 @@ long largest(){
 			continue;
 		}
 
-		printf("%ld\n", number);
 		if (numdigits(number) == 9) {
 			if (isPandigital(number)) {
-				printf("YES\n");
 				if (number > largest) {
 					largest = number;
 				}
@@ -69,15 +67,10 @@ long numdigits(long number)
 
 long concat(long n, const long* products)
 {
-	printf("n: %ld [%ld, %ld, %ld, %ld, %ld]\n", n, products[0], products[1], products[2],
-			products[3], products[4]);
 	long concatenated = products[0];
 	for (long j = 1 ; j < n; ++j) {
-		printf("products[%ld]: %ld concatenated: %ld\n", j, products[j], concatenated);
 		concatenated *= power(10, numdigits(products[j]));
-		printf("concatenated: %ld\n", concatenated);
 		concatenated += products[j];
-		printf("concatenated: %ld\n", concatenated);
 	}
 	return concatenated;
 }
