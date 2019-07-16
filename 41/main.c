@@ -1,42 +1,29 @@
-/* What is the sum of the only eleven primes that are both truncatable
- * from left to right and right to left?  */
+/* What is the largest n-digit pandigital prime that exists? */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <omp.h>
 
-int * buildPrimes(unsigned int maxprime)
+int isPrime(unsigned int number) 
 {
-	int * primes;
+	int limit = (int) sqrt(number);
 
-	primes = (int *) calloc(maxprime,sizeof(int));
-
-	/* 0 stands for: Not a prime number.
-	 *	 * 1 stands for: Is a prime number. */
-
-	for ( int i = 0; i < maxprime; primes[i++] = 1)  
-		;
-
-	/* Generate prime number array. */
-	primes[0] = 0;
-	primes[1] = 0;
-	for ( int i = 2; i < maxprime; ++i)
-		for ( int j = 2; j * i <= maxprime; ++j)
-			primes[j * i] = 0;
-
-	return primes;
+	for (int i = 2; i < limit; ++i)
+		if (number % i == 0)
+			return 0;
+	return 1;
 }
 
 long isPandigital(long num, int n)
 {
-	char hasit[n];
-	for (int i = 0; i < n; ++i)
+	char hasit[10];
+	for (int i = 0; i < 10; ++i)
 		hasit[i] = 0;
 
-	for (long j = 0; j < n; ++j) {
-		while (num > 0) {
-			hasit[num % 10] += 1;
-			num /= 10;
-		}
+	while (num > 0) {
+		hasit[num % 10] += 1;
+		num /= 10;
 	}
 	if (hasit[0])
 		return 0;
@@ -46,19 +33,32 @@ long isPandigital(long num, int n)
 	return 1;
 }
 
+int numdigits(int number)
+{
+	int digitscount = 0;
+	for (;number > 0; number /= 10)
+		digitscount++;
+	return digitscount;
+}
+
 int main()
 {
-	int largest = 0;
-	int maxprime = 1000000000;
-	int * primes = buildPrimes(maxprime);
+	int num_threads = omp_get_num_procs();
+	omp_set_num_threads(num_threads);
+	int large[num_threads];
+	for (int i = 0; i < num_threads; i++)
+		large[i] = 0;
 
-	for (unsigned int i = 1; i < 1000000000; ++i) {
-
-		if (primes[i] && isPandigital(i)) {
-			largest = i;
+	#pragma omp parallel for 
+	for (unsigned int i = 0; i <= 987654321; ++i) {
+		if (isPandigital(i, numdigits(i)) && isPrime(i)) {
+			large[omp_get_thread_num()] = i;
 		}
 	}
-
+	int largest = 0;
+	for (int i = 0; i < num_threads; i++)
+		if (large[i] > largest)
+			largest = large[i];
 	printf("%d\n", largest);
 	return 0;
 }
