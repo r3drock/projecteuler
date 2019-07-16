@@ -3,7 +3,7 @@ set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 
 add_executable(24.out main.c)
 add_custom_target(run24
-    COMMAND 24.out
+    COMMAND ./24.sh
     DEPENDS 24.out
     WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
 )

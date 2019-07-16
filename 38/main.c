@@ -1,5 +1,5 @@
-/* What is the sum of all products whose multiplicand/multiplier/product
- *  * identity can be written as a 1 through 9 pandigital.*/
+/* What is the largest 1 to 9 pandigital 9-digit number that can be formed as
+ * the concatenated product of an integer with (1,2, ... , n) where n > 1? */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -87,12 +87,10 @@ long isPandigital(long n)
 {
 	char hasit[BASE] = {0,0,0,0,0,0,0,0,0,0}; 
 
-	for (long j = 0; j < 9; ++j) {
 		while (n > 0) {
 			hasit[n % BASE] += 1;
 			n /= BASE;
 		}
-	}
 	if (hasit[0])
 		return 0;
 	for(long i = 1; i < BASE; ++i)
