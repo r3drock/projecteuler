@@ -12,8 +12,8 @@ jobs:
     - name: setup
       run: |
         uname -a
-        apt-get update
-        apt-get install --yes cmake gcc g++ libgmp-dev
+        sudo apt-get update
+        sudo apt-get install --yes cmake gcc g++ libgmp-dev
         export CC=gcc
         export CXX=g++
     - name: build
